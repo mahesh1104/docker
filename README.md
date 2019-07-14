@@ -90,13 +90,51 @@ B) Docker Compose
                        - "8975:80"
                    database:
                      image: postgres
+    
+    docker-compose up -d
    
    
     
-3. Docker-compose.yml to expose ports for containers
+
 
 C) Manage Data with Docker
+          By default Docker does not persist data
+          To persist Data,Docker Provides 3 options
+             Volume, BindMounts and tmpfs(linux only)
+             
+             docker run -it -v d:/data:/data alpine /bin/sh
+1. How docker manage data
+2. what all options docker provide to persist data
+3. Default behavior of container layer
+4. what is container layer
+5. how container data can be stored in host machine
+
 D) Docker Volume(Create,Inspect,Prune,Mount)
+
+1. How to create volume with docker
+2. How to mount docker volume to container with option -v & --mount
+3. HOw to persist container data on to docker volume permanently
+4. How to inspect any volume
+5. How to list down volumes
+6. Brief about volume prune & remove commands to free up the space by unused volumes
+7. How to share container data with another containers
+      docker volume --help
+      docker volume ls
+      docker create vol-demo-test
+      docker volume ls
+      docker run -it -v vol-demo-test:/data alpine /bin/sh
+      docker stop container number
+      docker rm container number
+      docker run -it -v vol-demo-test:/data alpine /bin/sh
+      
+      docker run -it -v vol-demo-test:/data busybox /bin/sh
+      
+      docker run -it --mount source=vol-demo-test,destination=/data busybox /bin/sh
+      
+      docker run -it --mount source=vol-demo-test,destination=/data alpine /bin/sh
+      
+      docker volume inspect vol-demo-test
+      
       Docker Bind Mount to persist container data on Host machine
       Docker Volume Versus Bind Mount
       Volumes - How to Create Backup, Restore or Migrate.
